@@ -18,16 +18,46 @@
         <iron-icon class="settings-icon" icon="icons:settings"></iron-icon>
       </div>
       <!-- Middle Content -->
-      <div class="card-content-middle"></div>
+      <div class="card-content-middle">
+        <div class="cc-chart-container">
+          {{#if sessionCourses}}
+          <div class="cc-vline">
+            <div class="cc-vline-title">Students</div>
+          </div>
+          <div class="cc-hline"></div>
+          {{else}}
+          <div class="cc-nothing animated fadeIn">
+            <div class="cc-nothing-message">No Courses to Show</div>
+            <div class="cc-nothing-add">Add Courses</div>
+          </div>
+          {{/if}}
+
+          {{#each sessionCourses}}
+          <div class="cc-course animated fadeIn">
+            <div class="cc-squares">
+              <div class="cc-square" style="height:{{percent}}%">
+                <paper-badge class="cc-badge" label="{{students}}"></paper-badge>
+                <paper-ripple></paper-ripple>
+              </div>
+            </div>
+            <div class="cc-meta">
+              <div class="cc-name">{{{name}}}</div>
+              <div class="cc-id  ">{{{_id}}}</div>
+            </div>
+          </div>
+          {{/each}}
+
+        </div>
+      </div>
       <!-- Bottom Content -->
       <div class="card-content-bottom">
         <div class="card-content-control0">
-          <div class="control-title">Order</div>
-          <paper-slider pin value="20"></paper-slider>
+          <!-- <div class="control-title">Order</div>
+          <paper-slider pin value="100"></paper-slider> -->
         </div>
         <div class="card-content-control1">
-          <div class="control-title">Compliance</div>
-          <paper-slider pin value="20"></paper-slider>
+          <div class="control-title">Compliance: <div class="control-subtitle">5</div></div>
+          <paper-slider pin snaps max="5" step="1" value="5"></paper-slider>
         </div>
         <div class="card-fullscreen-icon">
           <iron-icon icon="icons:fullscreen"></iron-icon>
@@ -62,11 +92,24 @@
           </div>
         </div>
       </div>
-
       <!-- <div class="card-content-middle"></div> -->
       <div class="card-content-bottom">
+        {{#if sessionCourses}}
         <div class="control-title">Selected Courses</div>
-        <div class="selected-courses"></div>
+        <div class="selected-courses">
+          {{#each sessionCourses}}
+          <div class="selected-container animated fadeIn">
+            <paper-checkbox class="selected-course" checked>
+              <div id="checkboxLabel" class="selected-course-meta">
+                <div class="course-name">{{name}}</div>
+                <div class="course-id">{{_id}}</div>
+              </div>
+            </paper-checkbox>
+            <iron-icon class="remove-selected-course" icon="icons:close"></iron-icon>
+          </div>
+          {{/each}}
+        </div>
+        {{/if}}
       </div>
     </div>
   </paper-material>

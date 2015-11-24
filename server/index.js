@@ -1,4 +1,10 @@
-Courses = new Meteor.Collection('courses');
+Courses  = new Meteor.Collection('courses');
+Stdcres  = new Meteor.Collection('studentscourses');
+
+Meteor.publish('stdcres', function(who){
+  console.log(who);
+  return Stdcres.find({course: {$in: who }}, {limit: 250});
+});
 
 SearchSource.defineSource('courses', function(searchText, options) {
   var options = {sort: {isoScore: -1}, limit: 5};
@@ -20,3 +26,4 @@ function buildRegExp(searchText) {
   var fullExp = exps.join('') + ".+";
   return new RegExp(fullExp, "i");
 }
+
