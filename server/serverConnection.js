@@ -66,8 +66,12 @@ server=new RemoteServer('localhost',9000,'test');
 server.startConnection();
 
 
+myjson = {};
+myjson = JSON.parse(Assets.getText("myjson.json"));
+
+
 request=[{"reuqestId": "5645f7f7ef0bde57344c84de"}];
-request=JSON.stringify(request);
+request=JSON.stringify(myjson);
   /*  "student": [
       {
         "id": "5645f7f70a7cd6ab830e8722",
