@@ -60,55 +60,11 @@ RemoteServer.prototype.query=function (data){
 
 
 
-
-
 server=new RemoteServer('localhost',9000,'test');
 server.startConnection();
 
-
 myjson = {};
 myjson = JSON.parse(Assets.getText("myjson.json"));
-
-
 request=[{"reuqestId": "5645f7f7ef0bde57344c84de"}];
 request=JSON.stringify(myjson);
-  /*  "student": [
-      {
-        "id": "5645f7f70a7cd6ab830e8722",
-        "gpa": 7.0793,
-        "performance": 0.6,
-        "compliance": 3
-      }
-    ],
-    "courses": [
-      {
-        "id": "5645f7f73077f65af76df45a",
-        "compliance": 2
-      },
-      {
-        "id": "5645f7f7fccab1b5dd662a4b",
-        "compliance": 5
-      },
-      {
-        "id": "5645f7f7e7b8050367ef5cff",
-        "compliance": 5
-      },
-      {
-        "id": "5645f7f70ea9b237c0039330",
-        "compliance": 5
-      }
-    ],
-    "data": [
-      {
-        "from": 2009,
-        "to": 2015,
-        "program": true,
-        "sylabus": true,
-        "evaluation": false,
-        "instructors": true,
-        "compliance": 2
-      }
-    ]
-  }
-];*/
-//server.query( request);
+ 

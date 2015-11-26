@@ -6,11 +6,6 @@ var options = {keepHistory: 1000,localSearch: true};
 PackageSearch = new SearchSource('courses', fields, options);
 
 /*
-* This temaplate is using sessions:
-*/
-Session.set('sessionCourses',[]);
-
-/*
 * Template life Cycle (Events)
 */
 Template.coursescard.events({
@@ -45,30 +40,56 @@ Template.coursescard.events({
     template.$(".search-results").hide();
   },
   "click .result-course": function(event,template) {
-    if( $(".selected-courses").children().length < 7) {
-      var simpleName = this.name.replace(/<(?:.|\n)*?>/gm,'');
-      var courses = Session.get('sessionCourses');
-      var course  = this;
-      var m = Session.get("sessionCourses");
-      m = _.extend([], m);
-      m.push(this);
-      Session.set("sessionCourses", m);
-      Meteor.subscribe('stdcres',[this._id]);
+    var course = this;
+    var courses = _.uniq(Session.get('courses'));
+
+    if(courses.length < 7) {
+      courses = _.extend([], courses);
+      courses.push(course._id);
+      Session.set("courses", courses);
+      Meteor.subscribe("this_courses", courses);
+      Meteor.subscribe("grades", courses);
+    } else {
+      $("#paperToast").attr("text","Can't add more courses.");
+      document.querySelector('#paperToast').show();
     }
   },
   "click .remove-selected-course": function(event,template) {
+    var id = this._id;
     $(event.target).parent().fadeOut('slow', function (){
+      var a = Session.get("courses");
+      for(var i = a.length; i--;) {
+        if(a[i] === id) {
+          a.splice(i, 1);
+        }
+      }
+      Session.set("courses",a);
       $(this).remove();
-      var m = Session.get("sessionCourses");
-      Session.set("sessionCourses", "");
     });
   },
-  "click .selected-course": function(event,template) {
+  "click .cc-squares, click .cc-meta": function(event,template) {
+    $("circle").css("stroke","none");
+    $("circle").css("z-index","0");
+    var parent = $(event.target).parents(".cc-course");
+    template.$(".cc-squares").css("background","#fafafa");
+    template.$(".cc-meta").css("background","#fafafa");
+    parent.find(".cc-squares").css("background","#EEEEEE");
+    parent.find(".cc-meta").css("background","#EEEEEE");
+
+    $("."+this._id+"").css("stroke","rgba(66, 66, 66, 0.45)");
+    $("."+this._id+"").insertAfter();
+    Session.set("selected-course",this._id);
+  },
+  "change .cc-paper-slider": function(event,template) {
+    var n = template.$(".cc-paper-slider").attr("value");
+    Session.set("cc-compliance", n);
+
+    Websocket.send('{"reuqestId": "5645f7f7ef0bde57344c84de"}');
   }
 });
 
 /*
-* Template life Cycle (Helpers)
+* Display data from helpers
 */
 Template.coursescard.helpers({
   getCourses: function() {
@@ -87,29 +108,20 @@ Template.coursescard.helpers({
     return Courses.find({});
   },
   sessionCourses: function() {
-    var sc = Session.get("sessionCourses");
-    console.log(Session.get("sessionCourses"));
-    for (i = 0; i < sc.length; i++) {
-      sc[i].students = sc[i].students > 999 ? (sc[i].students/1000).toFixed(1) + 'k' : sc[i].students;
+    var courses = Session.get("courses");
+    var sc;
+    if (courses) {
+      sc = Courses.find({"_id": {$in: courses }}).fetch();
+      for (i = 0; i < sc.length; i++) {
+        sc[i].students = sc[i].students > 999 ? (sc[i].students/1000).toFixed(1) + 'k' : sc[i].students;
+      }
     }
     return sc;
+  },
+  compliance: function() {
+    return Session.get("cc-compliance");
+  },
+  selectedCourse: function() {
+    return Courses.findOne({ "_id" : Session.get("selected-course")});
   }
 });
-
-/*
-* Template life Cycle (rendered)
-*/
-Template.coursescard.rendered = function () {
-  // var self = this;
-  // console.log("rendered");
-  //
-  // function animateTemplate(bar) {
-  //   var size = (self.$(".cc-squares").text() * 100)/3294;
-  //   self.$(".cc-squares").animate({'height': size+'px'});
-  // }
-  //
-  // Tracker.autorun(function () {
-  //   var bar = Session.get("sessionCourses");
-  //   animateTemplate(bar);
-  // });
-};

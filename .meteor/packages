@@ -25,6 +25,7 @@ meteorhacks:search-source # Needed for instant search
 check                     # Needed for instant search
 ejson                     # Needed for instant search
 
-natestrauser:animate-css
+natestrauser:animate-css  # Daneden's Animate CSS
+iron:router
+em0ney:chartjs
 d3
-joncursi:socket-io-client
