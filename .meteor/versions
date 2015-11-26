@@ -10,6 +10,7 @@ boilerplate-generator@1.0.4
 caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
+chart:chart@1.0.1-beta.4
 check@1.1.0
 d3@1.0.0
 ddp@1.2.2
@@ -21,7 +22,6 @@ diff-sequence@1.0.1
 ecmascript@0.1.6
 ecmascript-runtime@0.2.6
 ejson@1.0.7
-em0ney:chartjs@1.0.2
 es5-shim@4.1.14
 fastclick@1.0.7
 geojson-utils@1.0.4

@@ -27,5 +27,5 @@ ejson                     # Needed for instant search
 
 natestrauser:animate-css  # Daneden's Animate CSS
 iron:router
-em0ney:chartjs
 d3
+chart:chart

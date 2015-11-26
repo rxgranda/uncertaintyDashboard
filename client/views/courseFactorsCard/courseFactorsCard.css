@@ -15,17 +15,22 @@
   opacity: 0.6;
 }
 
-.good-grades > #checkboxContainer > #checkbox { border-color: #27AE60; }
-.good-grades /deep/ .checked { background: #27AE60 !important; }
 
-.best-grades > #checkboxContainer > #checkbox { border-color: #25A085; }
-.best-grades /deep/ .checked { background: #25A085 !important; }
+.horizontal-section {
+  min-width: 200px;
+}
+    
+paper-radio-button {
+	display: inline-block;
+	min-width:100px;
+	max-width:200px;
+	font-size: 13px !important;
+}
 
-.bad-grades > #checkboxContainer > #checkbox { border-color: #E74C3C; }
-.bad-grades /deep/ .checked { background: #E74C3C !important; }
+paper-radio-group >*{
+	padding: 4px;
+}
 
-.lazy-grades > #checkboxContainer > #checkbox { border-color: #E67D22; }
-.lazy-grades /deep/ .checked { background: #E67D22 !important; }
-
-.regular-grades > #checkboxContainer > #checkbox { border-color: #F0C30E; }
-.regular-grades /deep/ .checked { background: #F0C30E !important; }
+#myChart{
+	margin-top: -25px;
+}
