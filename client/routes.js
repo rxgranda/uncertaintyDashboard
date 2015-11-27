@@ -20,7 +20,10 @@ Router.route('/:_id', {
     Session.set("gc-toggle", true);
     Session.set("hc-toggle", true);
 
-    if(courses) Session.set("selected-course", courses[0]);
+    if(courses){
+     Session.set("selected-course", courses[0]);
+     Session.set("selected-courses-factor", courses[0]);
+    }
 
     Meteor.subscribe("grades", courses);
     Meteor.subscribe("this_student", student);

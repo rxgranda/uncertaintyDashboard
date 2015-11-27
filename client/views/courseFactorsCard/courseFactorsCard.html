@@ -31,15 +31,15 @@
           <div class="card-content-columns">
 
 <div class="horizontal-section">
-          <paper-radio-group selected="c">
-            <paper-radio-button name="uno" class="radio1">Curso1</paper-radio-button>
-            <paper-radio-button name="c" class="radio2">Curso2</paper-radio-button>
-            <paper-radio-button name="h" class="radio3">Curso3</paper-radio-button>
-            <paper-radio-button name="n" class="radio4">Curso4</paper-radio-button>
-            <paper-radio-button name="ca" class="radio5">Curso5</paper-radio-button>
-            <paper-radio-button name="cb" class="radio6">Curso6</paper-radio-button>
-
+      {{#if selectedCoursesFactor}}
+          <paper-radio-group selected="courseFactor{{selectedCoursesFactor._id}}">                  
+            {{#each sessionCourses}}
+                 <paper-radio-button name="courseFactor{{_id}}" class="radio{{order}}"> {{{name}}}</paper-radio-button>        
+            {{/each}}
           </paper-radio-group>
+      {{else}}
+            No Selected Courses
+      {{/if}}
         </div>
             
           </div>

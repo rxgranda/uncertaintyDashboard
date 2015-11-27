@@ -98,4 +98,31 @@ Template.courseFactorsCard.rendered = function(){
     console.log('Rendering');
 
 	drawChart();
+
+  
 };
+
+
+Template.courseFactorsCard.helpers({
+
+
+    sessionCourses: function() {
+        var courses = Session.get("courses");
+          var sc;
+        if (courses) {
+          sc = Courses.find({"_id": {$in: courses }}).fetch();
+          for (i = 0; i < sc.length; i++) {
+            sc[i].order = (i+1)%7;
+          }
+        }
+        return sc;
+    },
+    
+    selectedCoursesFactor: function() {
+        return Courses.findOne({ "_id" : Session.get("selected-courses-factor")});
+    }
+
+
+
+
+});
