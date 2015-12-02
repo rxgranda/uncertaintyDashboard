@@ -22,7 +22,8 @@ Router.route('/:_id', {
 
     if(courses){
      Session.set("selected-course", courses[0]);
-     Session.set("selected-courses-factor", courses[0]);
+     if(courses.length>0)
+     Session.set("selected-courses-factor", courses[courses.length-1]);
     }
 
     Meteor.subscribe("grades", courses);

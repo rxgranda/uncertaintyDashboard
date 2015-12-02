@@ -18,13 +18,16 @@
 
 .horizontal-section {
   min-width: 200px;
+  flex-direction:row;
 }
-    
-paper-radio-button {
+   
+paper-checkbox {
 	display: inline-block;
-	min-width:100px;
-	max-width:200px;
+	min-width:10em;
+	padding-left: 0px !important;
 	font-size: 13px !important;
+  padding: 1px;
+  text-overflow:ellipsis;
 }
 
 paper-radio-group >*{
@@ -33,4 +36,44 @@ paper-radio-group >*{
 
 #myChart{
 	margin-top: -25px;
+}
+
+paper-checkbox  {
+  display: inline-block;
+  min-width:10em;
+  padding-left: 0px !important;
+  font-size: 13px !important;
+  padding: 1px;
+  text-overflow:ellipsis;
+}
+
+paper-checkbox #checkboxLabel.paper-checkbox{ padding-left: 2px !important;}
+
+
+.check1 > #checkboxContainer > #checkbox { border-color: #27AE60; }
+.check1 /deep/ .checked { background: #27AE60 !important; }
+
+.check2 > #checkboxContainer > #checkbox { border-color: #25A085; }
+.check2 /deep/ .checked { background: #25A085 !important; }
+
+.check3 > #checkboxContainer > #checkbox { border-color: #E74C3C; }
+.check3 /deep/ .checked { background: #E74C3C !important; }
+
+.check4 > #checkboxContainer > #checkbox { border-color: #E67D22; }
+.check4 /deep/ .checked { background: #E67D22 !important; }
+
+.check5 > #checkboxContainer > #checkbox { border-color: #F0C30E; }
+.check5 /deep/ .checked { background: #F0C30E !important; }
+
+
+
+.label-checkbox-courses {
+  display: inline-block !important;
+  vertical-align: middle;
+  white-space: nowrap; 
+    width: 8em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    padding-right: 7px !important;
+    
 }

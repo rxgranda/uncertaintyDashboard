@@ -30,13 +30,23 @@
           <div class="control-title">Courses</div>
           <div class="card-content-columns">
 
-<div class="horizontal-section">
-      {{#if selectedCoursesFactor}}
-          <paper-radio-group selected="courseFactor{{selectedCoursesFactor._id}}">                  
-            {{#each sessionCourses}}
-                 <paper-radio-button name="courseFactor{{_id}}" class="radio{{order}}"> {{{name}}}</paper-radio-button>        
-            {{/each}}
-          </paper-radio-group>
+<div class="horizontal-section" style="flex-direction: row;">
+      {{#if selectedCoursesFactor}}            
+              {{#each sessionCourses}}
+                 
+              <div>
+                  
+                  <paper-checkbox id="courseFactor{{first.id}}" class="check{{first.order}} coursefactor" checked change="{{checkedIfChecked id=first.id }}"> 
+                    <div class="label-checkbox-courses"  >{{{first.name}}}</div>
+                  </paper-checkbox>
+                   {{#if second}}    
+                      <paper-checkbox id="courseFactor{{second.id}}" class="check{{second.order}} coursefactor" checked change="{{checkedIfChecked  id=second.id}}"> 
+                      <div class="label-checkbox-courses"  >{{{second.name}}}</div>
+                      </paper-checkbox>
+                
+                    {{/if}}
+                </div>
+              {{/each}}                   
       {{else}}
             No Selected Courses
       {{/if}}
