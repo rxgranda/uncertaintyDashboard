@@ -1,8 +1,10 @@
 ev=null; tp=null;
-
+var sc=null;  myRadarChart=null;
 function constructDataset(course){
     var dataset;
     var index_=course.index%6; 
+    if(!course.data)
+        console.log('ERRORRRRR');
     dataset={
         label: course.name,
 
@@ -74,13 +76,17 @@ return dataset;
 
 };
 
-function drawChart( selectedCourses){
+function drawChart( ){
 
-    var datasets=[];
+    var datos=[];
+    datos.length=0;
 
-     for (var i = 0; i < selectedCourses.length; i++) {
-       datasets[i]=constructDataset(selectedCourses[i]);
-       console.log("Construir datasets");
+     for (var k = 0; k < sc.length; k++) {
+        if(sc[k].visible){
+            datos.push(constructDataset(sc[k]));
+            console.log("Construir datasets ");
+        }
+      
     }
 
 
@@ -106,10 +112,16 @@ function drawChart( selectedCourses){
 
 	var data = {
     labels: ["Programming", "Advanced\nComputing", "Customer\nInteraction", "Unrelated\nCourses", "Engineering"],
-    datasets: datasets
+    datasets: datos
 };
 	var ctx = document.getElementById("myChart").getContext("2d");
-    var myRadarChart = new Chart(ctx).Radar(data, {
+    if(myRadarChart)
+        myRadarChart.destroy();
+
+    try{
+
+
+    myRadarChart = new Chart(ctx).Radar(data, {
 
     //Boolean - Whether to show lines for each scale point
     scaleShowLine : true,
@@ -180,6 +192,10 @@ function drawChart( selectedCourses){
 
 
     });
+ }
+    catch(error){
+        var a =0;
+    }
     console.log('Done chart');
 }
 
@@ -188,7 +204,7 @@ function drawChart( selectedCourses){
 Template.courseFactorsCard.rendered = function(){
     setTimeout(function() {
         console.log('Rendering');
-        var sc=null;
+        
         var cc=Session.get("courses");
         if (cc) {
             sc = Courses.find({"_id": {$in: cc }}).fetch();
@@ -196,8 +212,12 @@ Template.courseFactorsCard.rendered = function(){
             for (var i = 0; i < sc.length; i++) {
                 sc[i].data= [Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100)];
                 sc[i].index=i+1;
+                sc[i].visible=true;
+                sc[i].id="courseFactor"+sc[i]._id;
+                console.log(sc[i].id);
+
             }
-            drawChart(sc);
+            drawChart();
         }
     },2500);      
 };
@@ -260,17 +280,26 @@ Template.courseFactorsCard.helpers({
 
 
 Template.courseFactorsCard.events({
-  "click .coursefactor": function(event,template){
-    console.log(template);
-    console.log(template.$(".coursefactor").attr("checked"));
-ev=event;
-tp=template;
-    /*var id = template.$(".sg-good").attr("class").split(" ")[0];
-    if(template.$(".good-grades").attr("checked")){
-      template.$(".sg-good").attr("class",id + " sg-good animated fadeInLeft");
+  "change .coursefactor": function(event,template){
+    console.log(event.target.id);
+   
+    var result = $.grep(sc, function(e){ return e.id == event.target.id; });
+
+    if (result.length == 0) {
+      console.log('Invalid Selection');
+    } else if (result.length == 1) {
+      result[0].visible=event.target.checked;
+      console.log('curso: '+ result[0].id+' visible:'+result[0].visible);
+      for (var i = sc.length - 1; i >= 0; i--) {
+          console.log('curso: '+sc[i].id+'visible: '+sc[i].visible);
+      };
+      drawChart();
     } else {
-      template.$(".sg-good").attr("class",id + " sg-good animated fadeOutLeft");
-    }*/
+      console.log('Invalid Selection. Multiple');
+    }
+
+    Session.set(event.target.id,event.target.checked);
+
   },
 
 
