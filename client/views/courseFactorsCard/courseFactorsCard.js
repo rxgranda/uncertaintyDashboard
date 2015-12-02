@@ -188,7 +188,13 @@ function drawChart( ){
     scaleFontColor: "#BBB",
 
 
-
+legendTemplate : '<ul>'
+                  
+                    +'<li>'
+                    +'<span style=\"background-color:rgb(39,174,96)>\">Programming</span>'
+                  +'</li>'               
+              +'</ul>'
+  
 
 
     });
