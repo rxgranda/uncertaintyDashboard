@@ -1,0 +1,46 @@
+.card-content-middle {
+  height: 200px;
+  position: relative;
+}
+
+.card-content-bottom {
+  display: flex;
+  flex-flow: column;
+}
+
+.control-title {
+  color: #424242;
+  font-size: 16px;
+  padding-top: 8px;
+}
+
+.card-content-columns {
+  display: flex;
+}
+
+.card-fullscreen-icon {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
+
+.card-fullscreen-icon iron-icon {
+  height: 25px;
+  width:  25px;
+}
+
+.irs-bar {
+  background: #b25d7e !important;
+}
+
+.irs-from {
+  background: #b25d7e !important;
+}
+
+.irs-to {
+  background: #b25d7e !important;
+}
+
+.irs-from:after, .irs-to:after, .irs-single:after {
+  border-top-color: #b25d7e !important;
+}

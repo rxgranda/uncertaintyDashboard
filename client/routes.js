@@ -19,6 +19,7 @@ Router.route('/:_id', {
 
     Session.set("gc-toggle", true);
     Session.set("hc-toggle", true);
+    Session.set("sf-toggle", true);
 
     if(courses){
      Session.set("selected-course", courses[0]);
