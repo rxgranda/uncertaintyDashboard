@@ -16,6 +16,7 @@
 
 .card-content-columns {
   display: flex;
+  
 }
 
 .card-fullscreen-icon {
@@ -29,18 +30,24 @@
   width:  25px;
 }
 
-.irs-bar {
-  background: #b25d7e !important;
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
 
-.irs-from {
-  background: #b25d7e !important;
+.browser text {
+  text-anchor: end;
 }
 
-.irs-to {
-  background: #b25d7e !important;
-}
 
-.irs-from:after, .irs-to:after, .irs-single:after {
-  border-top-color: #b25d7e !important;
+.sf-chart-container {
+  font: 10px sans-serif;
+  width: 100%;
+  position: relative;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
 }
