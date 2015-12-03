@@ -193,13 +193,25 @@ svg.append("text")
     .attr("transform", "rotate(-90)")
     .text("Number of Students");
 
+var coordinateX0=width/2; // Esta se debe calcular dinamicamente
+var coordinateY0=0;
+var coordinateX1=coordinateX0;
+var coordinateY1=height;
 
 svg.append("line")          // attach a line
     .style("stroke", "black")  // colour the line
-    .attr("x1", width/2)     // x position of the first end of the line
-    .attr("y1", 0)      // y position of the first end of the line
-    .attr("x2", width/2)     // x position of the second end of the line
-    .attr("y2", height);
+    .attr("x1", coordinateX0)     // x position of the first end of the line
+    .attr("y1", coordinateY0)      // y position of the first end of the line
+    .attr("x2", coordinateX1)     // x position of the second end of the line
+    .attr("y2", coordinateY1);
+
+svg.append("text")
+    .attr("x", coordinateX0+10)
+    .attr("y",coordinateY0 +10)
+    .attr("dy", ".35em")
+    .text("This student");
+
+
 });
 
 
