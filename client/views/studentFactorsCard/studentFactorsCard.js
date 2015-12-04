@@ -103,7 +103,7 @@ var format = d3.time.format("%m/%d/%y");
 
 var margin = {top: 30, right: 45, bottom: 60, left: 45},
     width = 380 - margin.left - margin.right,
-    height = 240 - margin.top - margin.bottom;
+    height = 230 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
     .domain(["Level-100", "Level-200", "Level-300", "Level-400","Level-500"])
