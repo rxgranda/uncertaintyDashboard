@@ -187,22 +187,23 @@ function drawChart( ){
     // String - Scale label font colour
     scaleFontColor: "#BBB",
 
-
-legendTemplate : '<ul>'
-                  
-                    +'<li>'
-                    +'<span style=\"background-color:rgb(39,174,96)>\">Programming</span>'
-                  +'</li>'               
-              +'</ul>'
-  
-
+   multiTooltipTemplate: function(valuesObject){
+                 // console.log(valuesObject);
+                  // do different things here based on whatever you want;
+                  return valuesObject.value+"%" ;
+                }
 
     });
  }
     catch(error){
         var a =0;
     }
-    console.log('Done chart');
+     //var legend = myRadarChart.generateLegend();
+
+  //and append it to your page somewhere
+  //$('#myChart').append(legend);
+    //console.log(myRadarChart.generateLegend());
+    //console.log('Done chart');
 }
 
 

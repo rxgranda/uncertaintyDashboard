@@ -33,3 +33,32 @@
 
 
   
+.sof-chart-container {
+  font: 10px sans-serif;
+  width: 100%;
+  position: relative;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+}
+
+
+.label-checkbox-courses-sf {
+  display: inline-block !important;
+  vertical-align: middle;
+  white-space: nowrap; 
+    width: 4em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    padding-right: 7px !important;
+    
+}
+
+
+
+.paper-check-box-sof{
+	text-align: center;
+	display: block;
+	    min-width: 7em !important;
+	    white-space: normal;
+}
