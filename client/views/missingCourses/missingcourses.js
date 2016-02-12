@@ -94,9 +94,9 @@ Template.studentdata.helpers({
     if((selected != "redo") && (year != "all")) query = Grades.find({"student": Session.get("student"), "year": Session.get("studentYear")}, {sort: {year: 1}}).fetch();
     if((selected != "redo") && (year == "all")) query = Grades.find({"student": Session.get("student")}, {sort: {year: 1}}).fetch();
     /* Show me redo's Specific years */
-    if((selected == "redo") && (year != "all")) query = Grades.find({"student": Session.get("student"), "year": Session.get("studentYear"), "status":"Failed", "status":{$not: "Passed"}}, {sort: {year: 1}}).fetch();
+    if((selected == "redo") && (year != "all")) query = Grades.find({"student": Session.get("student"), "year": Session.get("studentYear"), "status":"RP"}, {sort: {year: 1}}).fetch();
     /* Show me redo's All years */
-    if((selected == "redo") && (year == "all")) query = Grades.find({"student": Session.get("student"), "status":"Failed"}).fetch();
+    if((selected == "redo") && (year == "all")) query = Grades.find({"student": Session.get("student"), "status":"RP"}).fetch();
     /****/
     for (i = 0; i < query.length; i++) query[i].grade = parseFloat(query[i].grade);
     return query;

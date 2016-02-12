@@ -19,7 +19,7 @@ Router.route('/:_id', {
     Session.set("sc-toggle", false);
     Session.set("data-from","2010");
     Session.set("data-to",  "2015");
-    Session.set("studentdata","redo");
+    Session.set("studentdata","all");
     Session.set("studentYear","all");
     Session.set("loading",true);
     $(".risk-content-viz").css("opacity",0.5);

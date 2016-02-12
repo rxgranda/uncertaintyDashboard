@@ -3,7 +3,8 @@
 StudentFactorsChart = 0;
 CoursesFactorsChart = 0;
 // Websocket = new WebSocket("ws://franciscogutierrez10-80.terminal.com/test");
-Websocket = new WebSocket("wss://franciscogutierrez11-80.terminal.com/test");
+//Websocket = new WebSocket("ws://localhost:8000/test");
+Websocket = new WebSocket("ws://200.126.23.115:8000/test");
 Websocket.onopen    = function(evt) { onOpen(evt)    };
 Websocket.onclose   = function(evt) { onClose(evt)   };
 Websocket.onmessage = function(evt) { onMessage(evt) };
@@ -63,7 +64,8 @@ $(document).ready(function() {
       document.querySelector('#paperToast').show();
       //Websocket = new WebSocket("ws://localhost:8000/test");
       // Websocket = new WebSocket("ws://franciscogutierrez10-80.terminal.com/test");
-      Websocket = new WebSocket("wss://franciscogutierrez11-80.terminal.com/test");
+      //Websocket = new WebSocket("ws://localhost:8000/test");
+      Websocket = new WebSocket("ws://200.126.23.115:8000/test");
       Websocket.onopen    = function(evt) { onOpen(evt)   };
       Websocket.onclose   = function(evt) { onClose(evt)  };
       Websocket.onmessage = function(evt) { onMessage(evt)};
